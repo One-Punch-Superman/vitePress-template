@@ -53,13 +53,9 @@ const handleSelect = (path: string) => {
   border-bottom: 0;
 }
 :deep(.el-sub-menu__title) {
-  padding: 0 10px;
-  margin: 0 10px !important;
   font-size: 16px;
 }
 .el-menu-item {
-  padding: 0 10px;
-  margin: 0 10px !important;
   font-size: 16px;
 }
 .el-menu--popup {
