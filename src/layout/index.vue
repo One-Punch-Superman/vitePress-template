@@ -18,8 +18,8 @@ import Header from '@/layout/Header.vue';
 
 <style lang="scss" scoped>
 .layout-container {
-  min-height: 100vh;
   min-width: 1600px;
+  min-height: 100vh;
   color: #252f41;
   .layout-main {
     min-height: calc(100vh - 60px);

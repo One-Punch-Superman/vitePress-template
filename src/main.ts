@@ -1,7 +1,13 @@
 import { createApp } from 'vue';
+import router from './router';
+import store from './store';
+import directive from './directive';
+import App from './App.vue';
 
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+
+import '@/style/index.scss';
 
 import VMdEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
@@ -12,12 +18,6 @@ import '@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css';
 import Prism from 'prismjs';
 
 VMdEditor.use(vuepressTheme, { Prism }).use(createCopyCodePlugin());
-
-import router from './router';
-import store from './store';
-import directive from './directive';
-import '@/style/index.scss';
-import App from './App.vue';
 
 const app = createApp(App);
 

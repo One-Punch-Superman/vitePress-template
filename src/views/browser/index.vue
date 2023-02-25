@@ -19,6 +19,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .container {
+  position: relative;
   width: 1400px;
   margin: 0 auto;
 }
