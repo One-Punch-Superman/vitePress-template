@@ -21,7 +21,6 @@ export function getJsList() {
 }
 
 export function getVueList() {
-  debugger;
   const modulesFiles = import.meta.glob('/public/document/vue/*.md');
   const arr = Object.keys(modulesFiles).map((value) => {
     return value.split('/')[4];
@@ -44,7 +43,6 @@ export function getVueList() {
 }
 
 export function getVueRouterList() {
-  debugger;
   const modulesFiles = import.meta.glob('/public/document/vueRouter/*.md');
   const arr = Object.keys(modulesFiles).map((value) => {
     return value.split('/')[4];

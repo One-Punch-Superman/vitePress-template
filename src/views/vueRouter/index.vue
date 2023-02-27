@@ -26,7 +26,6 @@ const mdShowRef = ref();
 const text = ref('');
 
 onMounted(() => {
-  debugger;
   const id = Number(route.params.id);
   list.value = getVueRouterList();
   if (id) {
