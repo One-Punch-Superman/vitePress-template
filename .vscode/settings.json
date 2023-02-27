@@ -4,7 +4,6 @@
   "workbench.colorTheme": "Visual Studio Light",
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
-  "editor.fontLigatures": false,
   // 开启自动修复
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,

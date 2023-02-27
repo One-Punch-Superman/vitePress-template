@@ -7,7 +7,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .ts,.tsx,.vue,.js,.jsx --fix",
-    "style": "stylelint src .css,.scss,.vue --fix",
+    "style": "stylelint src/**/*.{html,vue,sass,less} --fix",
     "prettier": "prettier --write src/"
   },
   "dependencies": {
