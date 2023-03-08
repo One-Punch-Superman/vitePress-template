@@ -1,0 +1,32 @@
+.Layout .VPNavBar.has-sidebar .container > .title {
+  padding-left: 32px;
+  width: 272px;
+}
+.Layout .VPNavBar.has-sidebar .content {
+  padding-left: 272px;
+  padding-right: 32px;
+}
+.Layout .VPSidebar {
+  padding-left: 32px;
+  width: 272px;
+}
+.Layout .VPContent.has-sidebar {
+  padding-left: 272px;
+  padding-right: 0;
+}
+.Layout .VPDoc.has-aside .content-container {
+  max-width: 800px;
+}
+.Layout .VPNavBar.has-sidebar .curtain {
+  width: 0;
+}
+.VPSidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.VPNavBar .container {
+  max-width: 100%;
+}
+.VPContent .container {
+  max-width: 1400px;
+}
