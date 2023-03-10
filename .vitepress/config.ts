@@ -1,212 +1,128 @@
-import { createRequire } from 'module'
-import { defineConfig } from 'vitepress'
+import { createRequire } from "module";
+import { defineConfig } from "vitepress";
 
-const require = createRequire(import.meta.url)
-const pkg = require('vitepress/package.json')
+const require = createRequire(import.meta.url);
+const pkg = require("vitepress/package.json");
 
 export default defineConfig({
-  lang: 'en-US',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
+  lang: "en-US",
+  title: "VitePress",
+  description: "Vite & Vue powered static site generator.",
 
   lastUpdated: true,
   cleanUrls: true,
-
-  head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
-
+  scrollOffset: 80,
+  head: [["meta", { name: "theme-color", content: "#3c8772" }]],
   themeConfig: {
+    outlineTitle: "目录",
+    docFooter: {
+      prev: "上一篇",
+      next: "下一篇",
+    },
+
     nav: nav(),
 
     sidebar: {
-      '/guide/': sidebarGuide(),
-      '/reference/': sidebarReference()
+      "/vue/": sidebarVue(),
+      "/vue-router/": sidebarVueRouter(),
+      "/pinia/": sidebarPinia(),
+      "/vite/": sidebarVite(),
     },
 
     editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
-      text: 'Edit this page on GitHub'
+      pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
+      text: "Edit this page on GitHub",
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2019-present Evan You'
+      message: "Released under the MIT License.",
+      copyright: "Copyright © 2019-present Evan You",
     },
 
     algolia: {
-      appId: '8J64VVRP8K',
-      apiKey: 'a18e2f4cc5665f6602c5631fd868adfd',
-      indexName: 'vitepress'
+      appId: "8J64VVRP8K",
+      apiKey: "a18e2f4cc5665f6602c5631fd868adfd",
+      indexName: "vitepress",
     },
 
     carbonAds: {
-      code: 'CEBDT27Y',
-      placement: 'vuejsorg'
-    }
-  }
-})
+      code: "CEBDT27Y",
+      placement: "vuejsorg",
+    },
+  },
+});
 
 function nav() {
   return [
-    { text: 'Guide', link: '/guide/what-is-vitepress', activeMatch: '/guide/' },
     {
-      text: 'Reference',
-      link: '/reference/site-config',
-      activeMatch: '/reference/'
+      text: "Vue",
+      activeMatch: "/vue/",
+      link: "/vue/Vue项目搭建初始化",
     },
     {
-      text: pkg.version,
-      items: [
-        {
-          text: 'Changelog',
-          link: 'https://github.com/vuejs/vitepress/blob/main/CHANGELOG.md'
-        },
-        {
-          text: 'Contributing',
-          link: 'https://github.com/vuejs/vitepress/blob/main/.github/contributing.md'
-        }
-      ]
-    }
-  ]
+      text: "Vue Router",
+      activeMatch: "/vue-router/",
+      link: "/vue-router/入门",
+    },
+    {
+      text: "Pinia",
+      activeMatch: "/pinia/",
+      link: "/pinia/安装",
+    },
+    {
+      text: "Vite",
+      activeMatch: "/vite/",
+      link: "/vite/安装",
+    },
+  ];
 }
 
-function sidebarGuide() {
+function sidebarVue() {
   return [
     {
-      text: 'Introduction',
+      text: "基础",
       collapsed: false,
       items: [
-        { text: 'What is VitePress?', link: '/guide/what-is-vitepress' },
-        { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Routing', link: '/guide/routing' },
-        { text: 'Deploy', link: '/guide/deploy' }
-      ]
+        { text: "Vue项目搭建初始化", link: "/vue/Vue项目搭建初始化" },
+        { text: "生命周期", link: "/vue/生命周期" },
+        { text: "组件通信", link: "/vue/组件通信" },
+        { text: "响应式原理", link: "/vue/响应式原理" },
+        { text: "虚拟DOM", link: "/vue/虚拟DOM" },
+        { text: "diff算法", link: "/vue/diff算法" },
+      ],
     },
-    {
-      text: 'Writing',
-      collapsed: false,
-      items: [
-        { text: 'Markdown Extensions', link: '/guide/markdown' },
-        { text: 'Asset Handling', link: '/guide/asset-handling' },
-        { text: 'Frontmatter', link: '/guide/frontmatter' },
-        { text: 'Using Vue in Markdown', link: '/guide/using-vue' },
-        { text: 'Internationalization', link: '/guide/i18n' }
-      ]
-    },
-    {
-      text: 'Customization',
-      collapsed: false,
-      items: [
-        { text: 'Using a Custom Theme', link: '/guide/custom-theme' },
-        {
-          text: 'Extending the Default Theme',
-          link: '/guide/extending-default-theme'
-        },
-        { text: 'Build-Time Data Loading', link: '/guide/data-loading' },
-        { text: 'Connecting to a CMS', link: '/guide/cms' }
-      ]
-    },
-    {
-      text: 'Experimental',
-      collapsed: false,
-      items: [
-        {
-          text: 'MPA Mode',
-          link: '/guide/mpa-mode'
-        }
-      ]
-    },
-    // {
-    //   text: 'Migrations',
-    //   collapsed: false,
-    //   items: [
-    //     {
-    //       text: 'Migration from VuePress',
-    //       link: '/guide/migration-from-vuepress'
-    //     },
-    //     {
-    //       text: 'Migration from VitePress 0.x',
-    //       link: '/guide/migration-from-vitepress-0'
-    //     }
-    //   ]
-    // },
-    {
-      text: 'Config & API Reference',
-      link: '/reference/site-config'
-    }
-  ]
+  ];
 }
 
-function sidebarReference() {
+function sidebarVueRouter() {
   return [
     {
-      text: 'Reference',
-      items: [
-        { text: 'Site Config', link: '/reference/site-config' },
-        { text: 'Frontmatter Config', link: '/reference/frontmatter-config' },
-        { text: 'Runtime API', link: '/reference/runtime-api' },
-        { text: 'CLI', link: '/reference/cli' },
-        {
-          text: 'Default Theme',
-          items: [
-            {
-              text: 'Overview',
-              link: '/reference/default-theme-config'
-            },
-            {
-              text: 'Nav',
-              link: '/reference/default-theme-nav'
-            },
-            {
-              text: 'Sidebar',
-              link: '/reference/default-theme-sidebar'
-            },
-            {
-              text: 'Home Page',
-              link: '/reference/default-theme-home-page'
-            },
-            {
-              text: 'Footer',
-              link: '/reference/default-theme-footer'
-            },
-            {
-              text: 'Layout',
-              link: '/reference/default-theme-layout'
-            },
-            {
-              text: 'Badge',
-              link: '/reference/default-theme-badge'
-            },
-            {
-              text: 'Team Page',
-              link: '/reference/default-theme-team-page'
-            },
-            {
-              text: 'Prev / Next Links',
-              link: '/reference/default-theme-prev-next-links'
-            },
-            {
-              text: 'Edit Link',
-              link: '/reference/default-theme-edit-link'
-            },
-            {
-              text: 'Last Updated Timestamp',
-              link: '/reference/default-theme-last-updated'
-            },
-            {
-              text: 'Algolia Search',
-              link: '/reference/default-theme-search'
-            },
-            {
-              text: 'Carbon Ads',
-              link: '/reference/default-theme-carbon-ads'
-            }
-          ]
-        }
-      ]
-    }
-  ]
+      text: "基础",
+      collapsed: false,
+      items: [{ text: "入门", link: "/vue-router/入门" }],
+    },
+  ];
+}
+
+function sidebarPinia() {
+  return [
+    {
+      text: "介绍",
+      collapsed: false,
+      items: [{ text: "安装", link: "/pinia/安装" }],
+    },
+  ];
+}
+function sidebarVite() {
+  return [
+    {
+      text: "基础",
+      collapsed: false,
+      items: [{ text: "安装", link: "/vite/安装" }],
+    },
+  ];
 }

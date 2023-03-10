@@ -27,3 +27,47 @@
 .VPNavBar .container {
   max-width: 100%;
 }
+.VPDoc {
+  padding-top: 16px !important;
+}
+.aside-container {
+  padding-top: 80px !important;
+}
+.VPNav {
+  background-color: #ad6c6c !important;
+}
+.VPNavBar.fill:not(.has-sidebar) {
+  background-color: #ad6c6c !important;
+}
+.VPNavBar.has-sidebar .content-body,
+.VPNavBar.fill .content-body {
+  background-color: #ad6c6c !important;
+}
+.VPNavBarMenuLink.active {
+  color: #fff !important;
+}
+.VPFlyout.active .text {
+  color: #fff !important;
+}
+
+.dark .VPNav {
+  background-color: #1e1e20 !important;
+}
+.dark .VPNavBar.fill:not(.has-sidebar) {
+  background-color: #1e1e20 !important;
+}
+.dark .VPNavBar.has-sidebar .content-body,
+.dark .VPNavBar.fill .content-body {
+  background-color: #1e1e20 !important;
+}
+.dark .VPNavBarMenuLink.active {
+  color: #10b981 !important;
+}
+.dark .VPFlyout.active .text {
+  color: #10b981 !important;
+}
+.VPSidebarItem.is-active > .item .link > .text {
+  font-weight: 600;
+  color: #42b883 !important;
+  transition: color 0.25s;
+}
