@@ -6,20 +6,21 @@ const pkg = require("vitepress/package.json");
 
 export default defineConfig({
   lang: "en-US",
-  title: "VitePress",
+  title: "ViteLearn",
   description: "Vite & Vue powered static site generator.",
 
   lastUpdated: true,
   cleanUrls: true,
   scrollOffset: 80,
   head: [["meta", { name: "theme-color", content: "#3c8772" }]],
+
   themeConfig: {
     outlineTitle: "目录",
     docFooter: {
       prev: "上一篇",
       next: "下一篇",
     },
-
+    lastUpdatedText: "最近更新时间",
     nav: nav(),
 
     sidebar: {
@@ -27,15 +28,20 @@ export default defineConfig({
       "/vue-router/": sidebarVueRouter(),
       "/pinia/": sidebarPinia(),
       "/vite/": sidebarVite(),
+      "/vitePress/": sidebarVitePress(),
     },
 
     editLink: {
-      pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
-      text: "Edit this page on GitHub",
+      pattern:
+        "https://github.com/One-Punch-Superman/vitePress-template/edit/master/:path",
+      text: "在 GitHub 上编辑此页",
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      {
+        icon: "github",
+        link: "https://github.com/One-Punch-Superman/vitePress-template",
+      },
     ],
 
     footer: {
@@ -78,6 +84,11 @@ function nav() {
       activeMatch: "/vite/",
       link: "/vite/安装",
     },
+    {
+      text: "VitePress",
+      activeMatch: "/vitePress/",
+      link: "/vitePress/安装",
+    },
   ];
 }
 
@@ -93,6 +104,8 @@ function sidebarVue() {
         { text: "响应式原理", link: "/vue/响应式原理" },
         { text: "虚拟DOM", link: "/vue/虚拟DOM" },
         { text: "diff算法", link: "/vue/diff算法" },
+        { text: "key的作用", link: "/vue/key的作用" },
+        { text: "nextTick", link: "/vue/nextTick" },
       ],
     },
   ];
@@ -117,12 +130,23 @@ function sidebarPinia() {
     },
   ];
 }
+
 function sidebarVite() {
   return [
     {
       text: "基础",
       collapsed: false,
       items: [{ text: "安装", link: "/vite/安装" }],
+    },
+  ];
+}
+
+function sidebarVitePress() {
+  return [
+    {
+      text: "基础",
+      collapsed: false,
+      items: [{ text: "安装", link: "/vitePress/安装" }],
     },
   ];
 }
