@@ -49,7 +49,9 @@
 .VPFlyout.active .text {
   color: #fff !important;
 }
-
+.VPNavBarMenuLink:hover {
+  color: #fff !important;
+}
 .dark .VPNav {
   background-color: #1e1e20 !important;
 }

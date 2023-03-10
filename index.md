@@ -1,7 +1,7 @@
 ---
 layout: home
 
-title: VitePress
+title: ViteLearn
 titleTemplate: Vite & Vue Powered Static Site Generator
 
 hero:
@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/what-is-vitepress
+      link: /vue/Vue项目搭建初始化
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/One-Punch-Superman/vitePress-template
 
 features:
   - icon:
