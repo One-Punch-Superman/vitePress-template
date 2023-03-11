@@ -87,7 +87,7 @@ function nav() {
     {
       text: "VitePress",
       activeMatch: "/vitePress/",
-      link: "/vitePress/安装",
+      link: "/vitePress/应用配置",
     },
   ];
 }
@@ -144,9 +144,13 @@ function sidebarVite() {
 function sidebarVitePress() {
   return [
     {
-      text: "基础",
+      text: "配置",
       collapsed: false,
-      items: [{ text: "安装", link: "/vitePress/安装" }],
+      items: [
+        { text: "应用配置", link: "/vitePress/应用配置" },
+        { text: "主题配置", link: "/vitePress/主题配置" },
+        { text: "Frontmatter配置", link: "/vitePress/Frontmatter配置" },
+      ],
     },
   ];
 }
