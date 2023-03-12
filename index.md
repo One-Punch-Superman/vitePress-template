@@ -43,7 +43,7 @@ features:
     details: Vite是一种新型前端构建工具，能够显著提升前端开发体验。它主要由两部分组成：一个开发服务器和一套构建指令。
   - icon: 📝
     title: VitePress
-    details: VitePress 是基于 Vite 的静态网站生成器。
+    details: VitePress是一个静态站点生成器(SSG)，用于构建快速，以内容为中心的网站，例如：文档，博客。
   - icon: 🚀
     title: Ship Fast Sites
     details: Fast initial load with static HTML, fast post-load navigation with client-side routing.
