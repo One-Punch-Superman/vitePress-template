@@ -247,17 +247,20 @@ export function download(url: string) {
 ### eslint 支持
 
 ```bash
-yarn add eslint eslint-plugin-vue @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+npm install -D eslint eslint-plugin-vue @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 
 这四个依赖的作用分别是：
 
-eslint: EsLint 的核心代码
-eslint-plugin-vue：为 Vue 使用 Eslint 的插件
-@typescript-eslint/parser：ESLint 的解析器，用于解析 typescript，从而检查和规范 Typescript 代码
-@typescript-eslint/eslint-plugin：这是一个 ESLint 插件，包含了各类定义好的检测 Typescript 代码的规
+eslint: EsLint 的核心代码;
 
-配置 eslint 校验规则，项目根目录下新建.eslintrc.js
+eslint-plugin-vue：为 Vue 使用 Eslint 的插件;
+
+@typescript-eslint/parser：ESLint 的解析器，用于解析 typescript，从而检查和规范 Typescript 代码;
+
+@typescript-eslint/eslint-plugin：这是一个 ESLint 插件，包含了各类定义好的检测 Typescript 代码的规则。
+
+配置 eslint 校验规则，项目根目录下新建.eslintrc.cjs
 
 ```js
 module.exports = {
@@ -269,7 +272,6 @@ module.exports = {
   },
   parser: "vue-eslint-parser",
   extends: [
-    "eslint:recommended",
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
@@ -278,12 +280,9 @@ module.exports = {
     "./.eslintrc-auto-import.json",
   ],
   parserOptions: {
-    ecmaVersion: 12,
-    parser: "@typescript-eslint/parser",
+    ecmaVersion: "latest",
     sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
-    },
+    parser: "@typescript-eslint/parser",
   },
   // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
   plugins: ["vue", "@typescript-eslint", "prettier"],
@@ -431,16 +430,18 @@ dist
 ### prettier 支持
 
 ```bash
-yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+npm install -D prettier eslint-config-prettier eslint-plugin-prettier
 ```
 
 这三个依赖分别是：
 
-prettier：prettier 插件的核心代码
-eslint-config-prettier：解决 ESLint 中的样式规范和 prettier 中样式规范的冲突，以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效
-eslint-plugin-prettier：将 prettier 作为 ESLint 规范来使用
+prettier：prettier 插件的核心代码;
 
-配置 prettier 校验规则，项目根目录下新建.prettierrc.js
+eslint-config-prettier：解决 ESLint 中的样式规范和 prettier 中样式规范的冲突，以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效;
+
+eslint-plugin-prettier：将 prettier 作为 ESLint 规范来使用。
+
+配置 prettier 校验规则，项目根目录下新建.prettierrc.cjs
 
 ```js
 module.exports = {
@@ -471,40 +472,47 @@ dist
 ### stylelint 支持
 
 ```bash
-yarn add stylelint postcss postcss-html stylelint-config-html stylelint-config-prettier stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-standard stylelint-config-standard-scss stylelint-order -D
+npm install -D stylelint stylelint-config-standard stylelint-config-html stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-recess-order postcss postcss-html postcss-scss
 ```
 
 依赖说明
 
-stylelint: css 样式 lint 工具
-postcss: 转换 css 代码工具
-postcss-html: 识别 html/vue 中的 style 标签中的样式
-stylelint-config-html:
-stylelint-config-prettier: 关闭所有不必要或可能与 Prettier 冲突的规则
-stylelint-config-recommended-scss: scss 的推荐可共享配置规则，详细可查看官方文档
-stylelint-config-recommended-vue: lint.vue 文件的样式配置
-stylelint-config-standard: Stylelint 的标准可共享配置规则，详细可查看官方文档
-stylelint-config-standard-scss:
-stylelint-order: 指定样式书写的顺序，在.stylelintrc.js 中 order/properties-order 指定顺序
+stylelint: stylelint 核心库;
 
-配置 stylelint 校验规则，项目根目录下新建.stylelintrc.js
+stylelint-config-standard: Stylelint 标准共享配置，详细可查看官方文档;
+
+stylelint-config-recommended-scss: scss 的推荐可共享配置规则，详细可查看官方文档;
+
+stylelint-config-recommended-vue: vue 的样式配置;
+
+stylelint-config-html: 配置 vue 中 template 样式格式化;
+
+stylelint-config-recess-order: 指定样式书写的顺序，在.stylelintrc.js 中 order/properties-order 指定顺序。
+
+postcss: 转换 css 代码工具;
+
+postcss-html: 解析 HTML (类似 HTML) 的 PostCSS 语法;
+
+postcss-scss: PostCSS 的 SCSS 解析器;
+
+配置 stylelint 校验规则，项目根目录下新建.stylelintrc.cjs
 
 ```js
 // @see: https://stylelint.io
 
 module.exports = {
-  /* 继承某些已有的规则 */
   extends: [
     "stylelint-config-standard",
-    "stylelint-config-html/vue",
     "stylelint-config-standard-scss",
     "stylelint-config-recommended-vue/scss",
-    "stylelint-config-prettier",
+    "stylelint-config-html/vue",
+    "stylelint-config-recess-order",
   ],
-  /* 使用排序插件 */
-  plugins: ["stylelint-order"],
   overrides: [
-    // 扫描 .vue/html 文件中的<style>标签内的样式
+    {
+      files: ["**/*.{scss,css}"],
+      customSyntax: "postcss-scss",
+    },
     {
       files: ["**/*.{vue,html}"],
       customSyntax: "postcss-html",
@@ -820,15 +828,15 @@ export default defineConfig({
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
   "editor.fontLigatures": false,
+  // 保存自动格式化
+  "editor.formatOnSave": true,
   // 开启自动修复
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
   "eslint.validate": ["javascript", "vue", "html"],
-  "stylelint.validate": ["vue", "html", "scss", "less"],
-  // 保存的时候自动格式化
-  "editor.formatOnSave": true,
+  "stylelint.validate": ["css", "scss", "vue", "html"],
   // 默认格式化工具选择prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

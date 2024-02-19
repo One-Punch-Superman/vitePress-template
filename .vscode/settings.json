@@ -6,8 +6,8 @@
   "git.confirmSync": false,
   // 开启自动修复
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
   "eslint.validate": ["javascript", "vue", "html"],
   "stylelint.validate": ["vue", "html", "scss", "less"],
