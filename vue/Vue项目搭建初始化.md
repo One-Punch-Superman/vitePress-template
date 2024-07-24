@@ -7,13 +7,13 @@
 ## vite 初始化项目
 
 ```bash
-yarn create vite my-app --template vue-ts
+npm create vite@latest my-vue-app -- --template vue-ts
 ```
 
 ## 路由 vue-router
 
 ```bash
-yarn add vue-router
+npm install vue-router
 ```
 
 在 src 下新建 router/index.ts
@@ -57,17 +57,17 @@ app.mount("#app");
 ## 状态管理 pinia
 
 ```bash
-yarn add pinia pinia-plugin-persist
+npm install pinia pinia-plugin-persistedstate
 ```
 
 在 src 下新建 store/index.ts
 
 ```js
 import { createPinia } from "pinia";
-import piniaPluginPersist from "pinia-plugin-persist";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 const store = createPinia();
-store.use(piniaPluginPersist);
+store.use(piniaPluginPersistedstate);
 
 export default store;
 ```
@@ -89,7 +89,7 @@ app.mount("#app");
 ## 组件库 element-plus
 
 ```bash
-yarn add element-plus normalize.css
+npm install element-plus
 ```
 
 修改入口文件 mian.ts
@@ -127,14 +127,12 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 ## css 预处理器 scss
 
 ```bash
-yarn add sass -D
+npm install sass -D
 ```
 
 在 src/assets 下新建 style/index.scss,配置全局样式
 
 ```css
-@import "normalize.css";
-
 body {
   box-sizing: border-box;
 }
@@ -143,14 +141,13 @@ body {
 ## 封装请求 axios
 
 ```bash
-yarn add axios nprogress
+npm install axios
 ```
 
 在 src 下新建 utils/request.ts,封装请求
 
 ```js
 import axios, { AxiosRequestConfig } from "axios";
-import NProgress from "nprogress";
 
 // 设置请求头和请求路径
 axios.defaults.baseURL = "/api";
@@ -183,15 +180,12 @@ axios.interceptors.response.use((res) => {
 
 export function get(url: string, params?: any) {
   return new Promise((resolve, reject) => {
-    NProgress.start();
     axios
       .get(url, { params })
       .then((res) => {
-        NProgress.done();
         resolve(res.data);
       })
       .catch((err) => {
-        NProgress.done();
         reject(err.data);
       });
   });
@@ -199,15 +193,12 @@ export function get(url: string, params?: any) {
 
 export function post(url: string, params?: any) {
   return new Promise((resolve, reject) => {
-    NProgress.start();
     axios
       .post(url, JSON.stringify(params))
       .then((res) => {
-        NProgress.done();
         resolve(res.data);
       })
       .catch((err) => {
-        NProgress.done();
         reject(err.data);
       });
   });
@@ -215,17 +206,14 @@ export function post(url: string, params?: any) {
 
 export function upload(url: string, file: any) {
   return new Promise((resolve, reject) => {
-    NProgress.start();
     axios
       .post(url, file, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
-        NProgress.done();
         resolve(res.data);
       })
       .catch((err) => {
-        NProgress.done();
         reject(err.data);
       });
   });
@@ -730,7 +718,7 @@ trim_trailing_whitespace = false
 ## unplugin-auto-import 配置
 
 ```bash
-yarn add unplugin-auto-import -D
+npm install unplugin-auto-import -D
 ```
 
 修改 .eslintrc.js 配置文件
@@ -765,8 +753,8 @@ module.exports = {
 ```bash
 {
   "script": {
-    "lint": "eslint --ext .ts,.tsx,.vue,.js,.jsx --fix",
-    "style": "stylelint src .css,.scss,.vue --fix",
+    "lint": "eslint --ext .ts,.tsx,.vue,.js,.jsx src/ --fix",
+    "style": "stylelint src/**/*.{html,vue,sass,less} --fix",
     "prettier": "prettier --write src/"
   }
 }
