@@ -31,33 +31,18 @@ function generateSidebarItems(dirPath, basePath = "") {
 
     if (stat.isDirectory()) {
       const children = generateSidebarItems(filePath, relativePath);
-      // 查找该文件夹下是否有index.md，如果有，则作为链接
-      const indexFile = children.find((child) => child.isIndex);
-      const link = indexFile ? indexFile.link : undefined;
-
       const group = {
         text: formatTitle(file),
         collapsed: false,
-        items: children.filter((child) => !child.isIndex), // 过滤掉index.md项
+        items: children,
       };
-
-      if (link) {
-        group.link = link;
-      }
-
       items.push(group);
     } else if (file.endsWith(".md")) {
       const item = {
         text: formatTitle(name),
         link: `/${relativePath.replace(/\\/g, "/").replace(".md", "")}`,
       };
-
-      // 如果是index.md，我们标记为isIndex
-      if (file === "index.md") {
-        item.isIndex = true;
-      } else {
-        items.push(item);
-      }
+      items.push(item);
     }
   }
   return items;
