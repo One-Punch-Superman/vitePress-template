@@ -1,4 +1,4 @@
-### var,let,const 有什么区别
+# var,let,const 有什么区别
 
 var 的核心特性
 作用域：var 声明的变量是函数作用域或全局作用域

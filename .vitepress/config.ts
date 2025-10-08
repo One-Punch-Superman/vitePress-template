@@ -1,12 +1,7 @@
-import { createRequire } from "module";
 import { defineConfig } from "vitepress";
 import { getSidebar } from "../utils";
 
-const require = createRequire(import.meta.url);
-const pkg = require("vitepress/package.json");
-
 export default defineConfig({
-  srcDir: "./src",
   lang: "en-US",
   title: "ViteLearn",
   description: "Vite & Vue powered static site generator.",
