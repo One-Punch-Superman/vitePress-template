@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
-import { getSidebar } from "../utils";
+const fs = require("fs");
+const path = require("path");
 
 export default defineConfig({
   lang: "en-US",
@@ -59,12 +60,12 @@ function nav() {
     {
       text: "Js",
       activeMatch: "/js/",
-      link: "/js/var,let,const有什么区别",
+      link: "/js/01-var,let,const有什么区别",
     },
     {
       text: "Vue",
       activeMatch: "/vue/",
-      link: "/vue/Vue项目搭建初始化",
+      link: "/vue/01-Vue项目搭建初始化",
     },
     {
       text: "Vue Router",
@@ -89,51 +90,41 @@ function nav() {
   ];
 }
 
-function sidebarJs() {
-  return [
-    {
-      text: "var,let,const有什么区别",
-      link: "/js/var,let,const有什么区别",
-    },
-    { text: "生命周期", link: "/vue/生命周期" },
-    { text: "组件通信", link: "/vue/组件通信" },
-    { text: "响应式原理", link: "/vue/响应式原理" },
-    { text: "虚拟DOM", link: "/vue/虚拟DOM" },
-    { text: "diff算法", link: "/vue/diff算法" },
-    { text: "key的作用", link: "/vue/key的作用" },
-    { text: "nextTick", link: "/vue/nextTick" },
-  ];
+function getSidebar() {
+  return {
+    "/js/": generateSidebarItems("js"),
+    "/vue/": generateSidebarItems("vue"),
+    "/vue-router/": generateSidebarItems("vue-router"),
+    "/pinia/": generateSidebarItems("pinia"),
+    "/vite/": generateSidebarItems("vite"),
+    "/vitePress/": generateSidebarItems("vitePress"),
+  };
 }
 
-function sidebarVue() {
-  return [
-    { text: "Vue项目搭建初始化", link: "/vue/Vue项目搭建初始化" },
-    { text: "生命周期", link: "/vue/生命周期" },
-    { text: "组件通信", link: "/vue/组件通信" },
-    { text: "响应式原理", link: "/vue/响应式原理" },
-    { text: "虚拟DOM", link: "/vue/虚拟DOM" },
-    { text: "diff算法", link: "/vue/diff算法" },
-    { text: "key的作用", link: "/vue/key的作用" },
-    { text: "nextTick", link: "/vue/nextTick" },
-  ];
+function generateSidebarItems(basePath = "") {
+  const items = [];
+  const dirPath = path.join(__dirname, "../" + basePath);
+  const files = fs.readdirSync(dirPath);
+
+  for (const file of files) {
+    const name = file.replace(".md", "");
+    const relativePath = path.join(basePath, file);
+
+    if (file.endsWith(".md")) {
+      const item = {
+        text: formatTitle(name),
+        link: `/${relativePath.replace(/\\/g, "/").replace(".md", "")}`,
+      };
+      items.push(item);
+    }
+  }
+  console.log("item", items);
+  return items;
 }
 
-function sidebarVueRouter() {
-  return [{ text: "入门", link: "/vue-router/入门" }];
-}
-
-function sidebarPinia() {
-  return [{ text: "安装", link: "/pinia/安装" }];
-}
-
-function sidebarVite() {
-  return [{ text: "安装", link: "/vite/安装" }];
-}
-
-function sidebarVitePress() {
-  return [
-    { text: "应用配置", link: "/vitePress/应用配置" },
-    { text: "主题配置", link: "/vitePress/主题配置" },
-    { text: "Frontmatter配置", link: "/vitePress/Frontmatter配置" },
-  ];
+function formatTitle(str: any) {
+  if (str.split("-").length > 1) {
+    return str.split("-").slice(1).join("-");
+  }
+  return str;
 }

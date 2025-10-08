@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /vue/Vue项目搭建初始化
+      link: /vue/01-Vue项目搭建初始化
     - theme: alt
       text: View on GitHub
       link: https://github.com/One-Punch-Superman/vitePress-template
