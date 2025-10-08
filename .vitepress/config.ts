@@ -1,10 +1,12 @@
 import { createRequire } from "module";
 import { defineConfig } from "vitepress";
+import { getSidebar } from "../utils";
 
 const require = createRequire(import.meta.url);
 const pkg = require("vitepress/package.json");
 
 export default defineConfig({
+  srcDir: "./src",
   lang: "en-US",
   title: "ViteLearn",
   description: "Vite & Vue powered static site generator.",
@@ -22,14 +24,7 @@ export default defineConfig({
     },
     lastUpdatedText: "最近更新时间",
     nav: nav(),
-
-    sidebar: {
-      "/vue/": sidebarVue(),
-      "/vue-router/": sidebarVueRouter(),
-      "/pinia/": sidebarPinia(),
-      "/vite/": sidebarVite(),
-      "/vitePress/": sidebarVitePress(),
-    },
+    sidebar: getSidebar() as any,
 
     editLink: {
       pattern:
@@ -54,11 +49,6 @@ export default defineConfig({
       apiKey: "a18e2f4cc5665f6602c5631fd868adfd",
       indexName: "vitepress",
     },
-
-    carbonAds: {
-      code: "CEBDT27Y",
-      placement: "vuejsorg",
-    },
   },
   vite: {
     server: {
@@ -71,6 +61,11 @@ export default defineConfig({
 
 function nav() {
   return [
+    {
+      text: "Js",
+      activeMatch: "/js/",
+      link: "/js/var,let,const有什么区别",
+    },
     {
       text: "Vue",
       activeMatch: "/vue/",
@@ -99,65 +94,51 @@ function nav() {
   ];
 }
 
-function sidebarVue() {
+function sidebarJs() {
   return [
     {
-      text: "基础",
-      collapsed: false,
-      items: [
-        { text: "Vue项目搭建初始化", link: "/vue/Vue项目搭建初始化" },
-        { text: "生命周期", link: "/vue/生命周期" },
-        { text: "组件通信", link: "/vue/组件通信" },
-        { text: "响应式原理", link: "/vue/响应式原理" },
-        { text: "虚拟DOM", link: "/vue/虚拟DOM" },
-        { text: "diff算法", link: "/vue/diff算法" },
-        { text: "key的作用", link: "/vue/key的作用" },
-        { text: "nextTick", link: "/vue/nextTick" },
-      ],
+      text: "var,let,const有什么区别",
+      link: "/js/var,let,const有什么区别",
     },
+    { text: "生命周期", link: "/vue/生命周期" },
+    { text: "组件通信", link: "/vue/组件通信" },
+    { text: "响应式原理", link: "/vue/响应式原理" },
+    { text: "虚拟DOM", link: "/vue/虚拟DOM" },
+    { text: "diff算法", link: "/vue/diff算法" },
+    { text: "key的作用", link: "/vue/key的作用" },
+    { text: "nextTick", link: "/vue/nextTick" },
+  ];
+}
+
+function sidebarVue() {
+  return [
+    { text: "Vue项目搭建初始化", link: "/vue/Vue项目搭建初始化" },
+    { text: "生命周期", link: "/vue/生命周期" },
+    { text: "组件通信", link: "/vue/组件通信" },
+    { text: "响应式原理", link: "/vue/响应式原理" },
+    { text: "虚拟DOM", link: "/vue/虚拟DOM" },
+    { text: "diff算法", link: "/vue/diff算法" },
+    { text: "key的作用", link: "/vue/key的作用" },
+    { text: "nextTick", link: "/vue/nextTick" },
   ];
 }
 
 function sidebarVueRouter() {
-  return [
-    {
-      text: "基础",
-      collapsed: false,
-      items: [{ text: "入门", link: "/vue-router/入门" }],
-    },
-  ];
+  return [{ text: "入门", link: "/vue-router/入门" }];
 }
 
 function sidebarPinia() {
-  return [
-    {
-      text: "介绍",
-      collapsed: false,
-      items: [{ text: "安装", link: "/pinia/安装" }],
-    },
-  ];
+  return [{ text: "安装", link: "/pinia/安装" }];
 }
 
 function sidebarVite() {
-  return [
-    {
-      text: "基础",
-      collapsed: false,
-      items: [{ text: "安装", link: "/vite/安装" }],
-    },
-  ];
+  return [{ text: "安装", link: "/vite/安装" }];
 }
 
 function sidebarVitePress() {
   return [
-    {
-      text: "配置",
-      collapsed: false,
-      items: [
-        { text: "应用配置", link: "/vitePress/应用配置" },
-        { text: "主题配置", link: "/vitePress/主题配置" },
-        { text: "Frontmatter配置", link: "/vitePress/Frontmatter配置" },
-      ],
-    },
+    { text: "应用配置", link: "/vitePress/应用配置" },
+    { text: "主题配置", link: "/vitePress/主题配置" },
+    { text: "Frontmatter配置", link: "/vitePress/Frontmatter配置" },
   ];
 }
